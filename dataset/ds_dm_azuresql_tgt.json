@@ -1,0 +1,17 @@
+{
+	"name": "ds_dm_azuresql_tgt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_clintrial",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Raw",
+			"table": "dm"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
