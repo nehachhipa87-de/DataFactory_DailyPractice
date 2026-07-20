@@ -1,0 +1,17 @@
+{
+	"name": "ds_azuresqldb_patient_tgt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_clintrial",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "raw_patients"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

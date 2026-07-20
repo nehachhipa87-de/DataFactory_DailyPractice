@@ -1,0 +1,58 @@
+{
+	"name": "pl_adls_sales_all_srcfiles_raw_listoffiles",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy_adls_sales_all_srcfiles_raw_listoffiles",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"fileListPath": "cr-clintrial009/listofFiles/listofsalesfiles.txt",
+							"deleteFilesAfterCompletion": false
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_adls_sales_src",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adls_sales_raw",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "srcfiles_raw_load"
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-07-05T18:51:21Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

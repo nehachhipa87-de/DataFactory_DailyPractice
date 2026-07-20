@@ -1,0 +1,13 @@
+{
+	"name": "ds_invoice_adls_tgt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_clintrial_dev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

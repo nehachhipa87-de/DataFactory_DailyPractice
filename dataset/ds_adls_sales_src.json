@@ -1,0 +1,19 @@
+{
+	"name": "ds_adls_sales_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_gen_2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "listofFiles",
+				"fileSystem": "cr-clintrial009"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
