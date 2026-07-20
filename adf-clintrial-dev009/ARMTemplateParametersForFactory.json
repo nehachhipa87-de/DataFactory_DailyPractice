@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-clintrial-dev009"
+		},
+		"ls_adls_clintrial_dev_password": {
+			"value": ""
+		},
+		"ls_adls_gen_2_accountKey": {
+			"value": ""
+		},
+		"ls_azuresql_clintrial_password": {
+			"value": ""
+		},
+		"ls_sqlserver_NehaDb_password": {
+			"value": ""
+		},
+		"ls_sqlserver_healthconnect_raw_password": {
+			"value": ""
+		},
+		"ls_adls_clintrial_dev_properties_typeProperties_server": {
+			"value": "sql-clintrial-dev009.database.windows.net"
+		},
+		"ls_adls_clintrial_dev_properties_typeProperties_database": {
+			"value": "sql-db-clintrial-dev"
+		},
+		"ls_adls_clintrial_dev_properties_typeProperties_userName": {
+			"value": "CloudSA440ce2ee"
+		},
+		"ls_adls_gen_2_properties_typeProperties_url": {
+			"value": "https://stclintrialdev009.dfs.core.windows.net/"
+		},
+		"ls_azuresql_clintrial_properties_typeProperties_server": {
+			"value": "sql-clintrial-dev009.database.windows.net"
+		},
+		"ls_azuresql_clintrial_properties_typeProperties_database": {
+			"value": "sql-db-clintrial-dev"
+		},
+		"ls_azuresql_clintrial_properties_typeProperties_userName": {
+			"value": "CloudSA440ce2ee"
+		},
+		"ls_sqlserver_NehaDb_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_NehaDb_properties_typeProperties_database": {
+			"value": "NEHA_DB"
+		},
+		"ls_sqlserver_NehaDb_properties_typeProperties_userName": {
+			"value": "adf_user_neha"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_server": {
+			"value": "localhost\\SQLEXPRESS"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_database": {
+			"value": "dev_HealthConnect_raw"
+		},
+		"ls_sqlserver_healthconnect_raw_properties_typeProperties_userName": {
+			"value": "adf_user_neha"
+		}
+	}
+}
