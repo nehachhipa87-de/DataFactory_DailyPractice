@@ -46,7 +46,6 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"isSequential": false,
 					"activities": [
 						{
 							"name": "Copy_SqlServer_Landing",
@@ -63,6 +62,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "@if(\r\n    equals(item().IngestionType, 'Incremental'),\r\n    concat(\r\n        'SELECT * FROM ',\r\n        item().SrcSchemaName,\r\n        '.',\r\n        item().SrcTableName,\r\n        ' WHERE ',\r\n        item().WatermarkColName,\r\n        ' > ''',\r\n        string(item().WatermarkColValue),\r\n        ''''\r\n    ),\r\n    concat(\r\n        'SELECT * FROM ',\r\n        item().SrcSchemaName,\r\n        '.',\r\n        item().SrcTableName\r\n    )\r\n)",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -71,7 +74,25 @@
 							"inputs": [
 								{
 									"referenceName": "ds_SqlServerTables_Param",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"pDsServerName": {
+											"value": "@item().SrcServerName",
+											"type": "Expression"
+										},
+										"pDsDatabaseName": {
+											"value": "@item().SrcDatabaseName",
+											"type": "Expression"
+										},
+										"pDsSchemaName": {
+											"value": "@item().SrcSchemaName",
+											"type": "Expression"
+										},
+										"pDsTableName": {
+											"value": "@item().SrcTableName",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
