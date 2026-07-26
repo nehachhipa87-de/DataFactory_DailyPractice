@@ -2,7 +2,7 @@
 	"name": "ds_adls_clintrail_dev_param",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_adls_gen_2",
+			"referenceName": "ls_adls_clintrail_dev_param",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
