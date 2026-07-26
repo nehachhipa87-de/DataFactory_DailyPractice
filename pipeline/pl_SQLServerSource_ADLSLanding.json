@@ -212,7 +212,7 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"storedProcedureName": "[edcsrcmetadata].[srcEdcClintrailToLandControl]",
+								"storedProcedureName": "[edcsrcmetadata].[usp_UpdateMxWatermark]",
 								"storedProcedureParameters": {
 									"MetadataId": {
 										"value": {
