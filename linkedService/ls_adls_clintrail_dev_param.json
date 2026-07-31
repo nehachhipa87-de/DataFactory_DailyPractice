@@ -1,5 +1,5 @@
 {
-	"name": "ls_adls_gen_2",
+	"name": "ls_adls_clintrail_dev_param",
 	"properties": {
 		"annotations": [],
 		"type": "AzureBlobFS",

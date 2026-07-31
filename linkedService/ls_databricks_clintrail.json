@@ -1,0 +1,19 @@
+{
+	"name": "ls_databricks_clintrail",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-7405610079869894.14.azuredatabricks.net",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "DatabricksAccessToken"
+			},
+			"existingClusterId": "0730-041751-wc33s2vv"
+		}
+	}
+}
