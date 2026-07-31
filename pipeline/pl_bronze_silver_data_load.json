@@ -48,6 +48,77 @@
 					},
 					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "ForEach_Bronze_Tables_Itr",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Bronze_Silver_Data_Load",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_Bronze_Silver_Data_Load').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Notebook_Bronze_Silver_Data_Load",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Users/coffeebeanslearning@gmail.com/clintrail-dev/clintrail_silver/nb_bronze_silver_load.py",
+								"baseParameters": {
+									"domain": {
+										"value": "@item().Domain",
+										"type": "Expression"
+									},
+									"srcCatalog": {
+										"value": "@item().SrcCatalog",
+										"type": "Expression"
+									},
+									"srcSchema": {
+										"value": "@item().SrcSchema",
+										"type": "Expression"
+									},
+									"srcTableName": {
+										"value": "@item().SrcTableName",
+										"type": "Expression"
+									},
+									"tgtCatalog": {
+										"value": "@item().TgtCatalog",
+										"type": "Expression"
+									},
+									"tgtSchema": {
+										"value": "@item().TgtSchema",
+										"type": "Expression"
+									},
+									"tgtTableName": {
+										"value": "@item().TgtTableName",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_databricks_clintrail",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
