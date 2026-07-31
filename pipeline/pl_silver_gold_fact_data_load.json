@@ -17,6 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "@concat('Select * from [', pipeline().parameters.pPSchemaName,'].[', pipeline().parameters.pPTableName,'] where entityType = ''fact''')",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -41,7 +45,87 @@
 								"type": "Expression"
 							}
 						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach_Silver_Table_Itr",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Silver_Control_Table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_Silver_Control_Table').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Notebook_Silver_Gold_Fact_Data_Load",
+							"type": "DatabricksNotebook",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Users/coffeebeanslearning@gmail.com/clintrail-dev/clintrail_gold/nb_gold_facts.py",
+								"baseParameters": {
+									"businessKey": {
+										"value": "@item().BusinessKey",
+										"type": "Expression"
+									},
+									"entityName": {
+										"value": "@item().EntityName",
+										"type": "Expression"
+									},
+									"eventDateCol": {
+										"value": "@item().EventDateCol",
+										"type": "Expression"
+									},
+									"srcCatalog": {
+										"value": "@item().SrcCatalog",
+										"type": "Expression"
+									},
+									"srcSchema": {
+										"value": "@item().SrcSchema",
+										"type": "Expression"
+									},
+									"srcTableName": {
+										"value": "@item().SrcTableName",
+										"type": "Expression"
+									},
+									"tgtCatalog": {
+										"value": "@item().TgtCatalog",
+										"type": "Expression"
+									},
+									"tgtSchema": {
+										"value": "@item().TgtSchema",
+										"type": "Expression"
+									},
+									"tgtTableName": {
+										"value": "@item().TgtTableName",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_databricks_clintrail",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
 				}
 			}
 		],
