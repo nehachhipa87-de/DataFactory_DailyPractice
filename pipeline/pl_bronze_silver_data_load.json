@@ -109,6 +109,10 @@
 									"tgtTableName": {
 										"value": "@item().TgtTableName",
 										"type": "Expression"
+									},
+									"businessKey": {
+										"value": "@item().BusinessKey",
+										"type": "Expression"
 									}
 								}
 							},
