@@ -1,0 +1,71 @@
+{
+	"name": "pl_silver_gold_fact_data_load",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_Silver_Control_Table",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_SqlServerTables_Param",
+						"type": "DatasetReference",
+						"parameters": {
+							"pDsServerName": {
+								"value": "@pipeline().parameters.pPlServerName",
+								"type": "Expression"
+							},
+							"pDsDatabaseName": {
+								"value": "@pipeline().parameters.pPDatabaseName",
+								"type": "Expression"
+							},
+							"pDsSchemaName": {
+								"value": "@pipeline().parameters.pPSchemaName",
+								"type": "Expression"
+							},
+							"pDsTableName": {
+								"value": "@pipeline().parameters.pPTableName",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"pPlServerName": {
+				"type": "string",
+				"defaultValue": "localhost\\SQLEXPRESS"
+			},
+			"pPDatabaseName": {
+				"type": "string",
+				"defaultValue": "dev_clintrail_edc_src"
+			},
+			"pPSchemaName": {
+				"type": "string",
+				"defaultValue": "edcsrcmetadata"
+			},
+			"pPTableName": {
+				"type": "string",
+				"defaultValue": "srcEdcSilverToGoldControl"
+			}
+		},
+		"folder": {
+			"name": "dev_clintrail"
+		},
+		"annotations": []
+	}
+}
